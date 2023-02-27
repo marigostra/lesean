@@ -10,7 +10,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <java.version>18</java.version>
-    <javafx.version>19-ea+7</javafx.version>
+    <javafx.version>18</javafx.version>
     <junit.version>5.8.2</junit.version>
   </properties>
   <dependencies>
@@ -62,9 +62,9 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>com.example.labaparser/com.example.labaparser.HelloApplication</mainClass>
-              <launcher>app</launcher>
-              <jlinkZipName>app</jlinkZipName>
+              <mainClass>ru.lesean.app/ru.lesean.app.Main</mainClass>
+              <launcher>lesean</launcher>
+              <jlinkZipName>lesean</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>
               <noManPages>true</noManPages>
               <stripDebug>true</stripDebug>
@@ -73,6 +73,40 @@
           </execution>
         </executions>
       </plugin>
+
+      
+            <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.0.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <mainClass>ru.lesean.app.Main</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+
+
+            <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/lib</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+
+      
     </plugins>
   </build>
 </project>

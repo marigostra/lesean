@@ -1,3 +1,4 @@
+
 package ru.lesean.app;
 
 import javafx.fxml.FXML;
@@ -15,31 +16,14 @@ import java.util.List;
 
 public class MainWindowController
 {
-
-    public class TextHolder
-    {
-        public String Text;
-    }
-    @FXML
-    private Label BookName;
-
-    @FXML
-    private TextArea MainTextArea;
-
-    @FXML
-    private Button SaveButton;
-
-    @FXML
-    private Button SearchButton;
-
-    //    private FictionBook _book;
-    private String _bookName;
-    private TextHolder _parsedBook = new TextHolder();
-    private TextHolder _metadata = new TextHolder();
+    @FXML private Label BookName;
+    @FXML private TextArea MainTextArea;
+    @FXML private Button SaveButton;
+    @FXML private Button SearchButton;
 
     public void Init()
     {
-	//        MainTextArea.setText(_parsedBook.Text);
+      MainTextArea.setText("");
     }
 
     @FXML
@@ -52,21 +36,18 @@ public class MainWindowController
             DirectoryChooser directoryChooser = new DirectoryChooser ();
             directoryChooser.setTitle("Выберите директорию для сохранения");
             directoryChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-            File textFile = new File(directoryChooser.showDialog(privaryStage), _bookName + "text.txt") ;
+            File textFile = new File(directoryChooser.showDialog(privaryStage), "bookName" + "text.txt") ;
             textFile.createNewFile();
             FileWriter writer = new FileWriter(textFile, false);
-            writer.write(_parsedBook.Text);
+	    //            writer.write(_parsedBook.Text);
             writer.flush();
         }
         catch (Exception exception)
         {
-
         }
-
     }
 
-    @FXML
-    void OnSearchClickClick(MouseEvent event)
+    @FXML void OnSearchClickClick(MouseEvent event)
     {
         try
         {
@@ -75,30 +56,14 @@ public class MainWindowController
             DirectoryChooser directoryChooser = new DirectoryChooser ();
             directoryChooser.setTitle("Выберите директорию для сохранения");
             directoryChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-            File jsonFile = new File(directoryChooser.showDialog(privaryStage), _bookName + "meta.json") ;
+            File jsonFile = new File(directoryChooser.showDialog(privaryStage), "bookName" + "meta.json") ;
             jsonFile.createNewFile();
             FileWriter writer = new FileWriter(jsonFile, false);
-            writer.write(_metadata.Text);
+	    //            writer.write(_metadata.Text);
             writer.flush();
         }
         catch (Exception exception)
         {
-
         }
     }
-
-    protected void ParseSectionString(TextHolder str)
-    {
-    }
-
-    protected void ParseTitleString(TextHolder writer)
-    {
-	//                writer.Text += titleValue.getText() + "\n";
-    }
-
-
-    protected void ParseSection(FileWriter writer)
-    {
-    }
-
 }
