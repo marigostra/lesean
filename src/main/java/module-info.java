@@ -1,4 +1,4 @@
-open module ru.lesean.app
+open module ru.lesean
 {
     requires javafx.graphics;
     requires javafx.controls;
